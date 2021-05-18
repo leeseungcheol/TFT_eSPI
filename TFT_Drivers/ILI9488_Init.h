@@ -70,6 +70,7 @@
     writecommand(0xB1); // Frame Rate Control
     writedata(0xA0);
 
+    writecommand(0x21); // Display Inversion On
     writecommand(0xB4); // Display Inversion Control
     writedata(0x02);
 
