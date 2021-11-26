@@ -1176,9 +1176,15 @@ void TFT_eSPI::readRect(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *da
 
       // The 6 colour bits are in MS 6 bits of each byte but we do not include the extra clock pulse
       // so we use a trick and mask the middle 6 bits of the byte, then only shift 1 place left
+#if defined (TFT_SDA_READ)
+      uint8_t r = tft_Read_8();
+      uint8_t g = tft_Read_8();
+      uint8_t b = tft_Read_8();
+#else
       uint8_t r = (tft_Read_8()&0x7E)<<1;
       uint8_t g = (tft_Read_8()&0x7E)<<1;
       uint8_t b = (tft_Read_8()&0x7E)<<1;
+#endif
       color = color565(r, g, b);
   #endif
 
